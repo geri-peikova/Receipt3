@@ -18,11 +18,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 
 public class OCR extends AppCompatActivity {
 
     private static final String TAG = OCR.class.getSimpleName();
-
+    Receipt originalReceipt;
+    Receipt demoReceipt;
     Button btnOCR;
     Bitmap image;
     private TessBaseAPI mTess;
@@ -53,19 +55,19 @@ public class OCR extends AppCompatActivity {
             }
         });
     }
-
     public void processImage(){
         String[] text = null;
         String OCRresult = null;
         mTess.setImage(image);
         OCRresult = mTess.getUTF8Text();
-        extractReceipts(OCRresult);
+        extractOrder(OCRresult);
         TextView OCRTextView = (TextView) findViewById(R.id.OCRTextView);
         OCRTextView.setText(OCRresult);
 
     }
 
-    private void extractReceipts(String OCRresult){
+    private void extractOrder(String OCRresult){
+        originalReceipt = new Receipt();
         String[] text = null;
         text = OCRresult.split("\n+");
         Log.d(TAG, OCRresult);
@@ -101,17 +103,35 @@ public class OCR extends AppCompatActivity {
                             break;
                         }
                     }
-//                    if (notFound == false) {
-//                        Log.d(TAG, "[2] " + tok);
-//                    }
                 }
                 if (notFound == false) {
                     // line has two numbers at the end
                     // tokens[tokens.length()-2], tokens[tokens.length()-1]
                     Log.d(TAG, line);
+                   //
+                    String name = tokens[0];
+
+                    Log.d(TAG, tokens[tokens.length - 1]);
+                    for(int i = 1; i <= tokens.length - 3; i++){
+                        name = name + " " + tokens[i];
+                    }
+                    tokens[tokens.length - 2] = tokens[tokens.length - 2].replace(',', '.');
+                    tokens[tokens.length - 1] = tokens[tokens.length - 1].replace(',', '.');
+                    addOrderToOriginalReceipt(name, tokens[tokens.length - 2], tokens[tokens.length - 1]);
                 }
             }
         }
+    }
+
+    private void addOrderToOriginalReceipt(String name, String count, String price){
+
+        Order order = new Order(name,  Double.parseDouble(count), Double.parseDouble(price));
+
+        Log.d(TAG, order.getName());
+        Log.d(TAG, String.valueOf(order.getCount()));
+        Log.d(TAG, String.valueOf(order.getPrice()));
+
+        originalReceipt.addOrder(order);
     }
 
     private void checkFile(File dir) {
