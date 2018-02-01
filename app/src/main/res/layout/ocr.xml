@@ -22,27 +22,18 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <Button
         android:layout_width="match_parent"
         android:layout_height="42dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:clickable="true"
-        android:onClick="processImage"
         android:background="#167865"
-        android:id="@+id/OCRButtonContainer">
+        android:id="@+id/btnOCR"
+        android:text="Run OCR">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Run OCR"
-            android:id="@+id/OCRbutton"
-            android:textSize="18dp"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:clickable="true"
-            android:onClick="processImage"/>
-    </RelativeLayout>
+
+    </Button>
 
     <RelativeLayout
         android:layout_width="match_parent"

@@ -20,6 +20,7 @@ import com.imperialsoupgmail.tesseractexample.R;
 public class Capture extends AppCompatActivity {
 
     Button btnCapture;
+    Button btnConfirmCapture;
     ImageView imageView;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static private Bitmap photo = null;
@@ -30,7 +31,9 @@ public class Capture extends AppCompatActivity {
         setContentView(R.layout.capture);
 
         btnCapture = (Button) findViewById(R.id.btnCapture);
+        btnConfirmCapture = (Button) findViewById(R.id.btnConfirmCapture);
         imageView = (ImageView) findViewById(R.id.imageView);
+        btnConfirmCapture.setVisibility(View.INVISIBLE);
 
         if(!hasCamera()){
             btnCapture.setEnabled(false);
@@ -57,6 +60,13 @@ public class Capture extends AppCompatActivity {
             Bundle extras = data.getExtras();
             photo = (Bitmap) extras.get("data");
             imageView.setImageBitmap(photo);
+            btnConfirmCapture.setVisibility(View.VISIBLE);
+            btnConfirmCapture.setOnClickListener(new View.OnClickListener(){
+                public void onClick(View v){
+                    setContentView(R.layout.ocr);
+                }
+            });
+
         }
 
     }

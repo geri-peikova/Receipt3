@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.googlecode.tesseract.android.TessBaseAPI;
@@ -19,6 +20,7 @@ import java.io.OutputStream;
 
 public class OCR extends AppCompatActivity {
 
+    Button btnOCR;
     Bitmap image;
     private TessBaseAPI mTess;
     String datapath = "";
@@ -28,6 +30,7 @@ public class OCR extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ocr);
 
+        btnOCR = (Button)findViewById(R.id.btnOCR);
         //init image
         image = BitmapFactory.decodeResource(getResources(), R.drawable.bill_bg);
 
@@ -39,6 +42,11 @@ public class OCR extends AppCompatActivity {
         checkFile(new File(datapath + "tessdata/"));
 
         mTess.init(datapath, language);
+        btnOCR.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                processImage(v);
+            }
+        });
     }
 
     public void processImage(View view){

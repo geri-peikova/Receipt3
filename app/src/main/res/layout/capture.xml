@@ -12,6 +12,14 @@
         android:layout_marginBottom="17dp"
         android:text="Take picture" />
 
+    <Button
+        android:id="@+id/btnConfirmCapture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnCapture"
+        android:layout_alignStart="@+id/btnCapture"
+        android:text="Confirm" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
