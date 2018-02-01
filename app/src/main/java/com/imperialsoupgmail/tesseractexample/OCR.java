@@ -35,7 +35,7 @@ public class OCR extends AppCompatActivity {
 
         btnOCR = (Button)findViewById(R.id.btnOCR);
         //init image
-        image = BitmapFactory.decodeResource(getResources(), R.drawable.bill_bg);
+        image = BitmapFactory.decodeResource(getResources(), R.drawable.bill_bg);//TODO: Change the image to be the one u take with the camera
 
         //initialize Tesseract API
         String language = "bul";
@@ -55,13 +55,63 @@ public class OCR extends AppCompatActivity {
     }
 
     public void processImage(){
+        String[] text = null;
         String OCRresult = null;
         mTess.setImage(image);
         OCRresult = mTess.getUTF8Text();
-        Log.d(TAG, OCRresult);
+        extractReceipts(OCRresult);
         TextView OCRTextView = (TextView) findViewById(R.id.OCRTextView);
         OCRTextView.setText(OCRresult);
 
+    }
+
+    private void extractReceipts(String OCRresult){
+        String[] text = null;
+        text = OCRresult.split("\n+");
+        Log.d(TAG, OCRresult);
+        Log.d(TAG, "!!!!!!!");
+        Log.d(TAG, text[12]);
+        for (String line : text) {
+            String[] tokens = line.split("\\ +");
+            int idx = tokens.length-1;
+            boolean notFound = false; // number
+
+            if (tokens.length >= 3) {
+                String tok = tokens[idx];
+                while (tok.length() == 0) {
+                    idx --;
+                    tok = tokens[idx];
+                }
+                for (int n = tok.length() - 1; n >= 0 ; n--) {
+                    Character c = tok.charAt(n);
+                    if (!(Character.isDigit(c) || c.charValue() == 44 || c.equals("."))) {
+                        notFound = true; // not number
+                        break;
+                    }
+                }
+
+                if (notFound == false) {
+//                    Log.d(TAG, "[1] " + tok);
+                    idx --;
+                    tok = tokens[idx];
+                    for (int n = tok.length() - 1; n >= 0 ; n--) {
+                        Character c = tok.charAt(n);
+                        if (!(Character.isDigit(c) || c.charValue() == 44 || c.equals("."))) {
+                            notFound = true; // not number
+                            break;
+                        }
+                    }
+//                    if (notFound == false) {
+//                        Log.d(TAG, "[2] " + tok);
+//                    }
+                }
+                if (notFound == false) {
+                    // line has two numbers at the end
+                    // tokens[tokens.length()-2], tokens[tokens.length()-1]
+                    Log.d(TAG, line);
+                }
+            }
+        }
     }
 
     private void checkFile(File dir) {
