@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,6 +19,8 @@ import com.imperialsoupgmail.tesseractexample.R;
  */
 
 public class Capture extends AppCompatActivity {
+
+    private static final String TAG = Capture.class.getSimpleName();
 
     Button btnCapture;
     Button btnConfirmCapture;
@@ -36,12 +39,16 @@ public class Capture extends AppCompatActivity {
         btnConfirmCapture.setVisibility(View.INVISIBLE);
 
         if(!hasCamera()){
+            Log.d(TAG, "Camera is not available");
             btnCapture.setEnabled(false);
-        }else btnCapture.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                launchCamera();
-            }
-        });
+        }else {
+            Log.d(TAG, "Camera launch");
+            btnCapture.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    launchCamera();
+                }
+            });
+        }
 
     }
 
@@ -63,7 +70,10 @@ public class Capture extends AppCompatActivity {
             btnConfirmCapture.setVisibility(View.VISIBLE);
             btnConfirmCapture.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View v){
-                    setContentView(R.layout.ocr);
+                    Log.d(TAG, "Switch to OCR");
+
+                    Intent myIntent = new Intent(Capture.this, OCR.class);
+                    Capture.this.startActivity(myIntent);
                 }
             });
 

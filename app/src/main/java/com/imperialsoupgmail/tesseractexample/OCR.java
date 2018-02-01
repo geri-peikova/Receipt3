@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,6 +20,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class OCR extends AppCompatActivity {
+
+    private static final String TAG = OCR.class.getSimpleName();
 
     Button btnOCR;
     Bitmap image;
@@ -42,19 +45,23 @@ public class OCR extends AppCompatActivity {
         checkFile(new File(datapath + "tessdata/"));
 
         mTess.init(datapath, language);
+        Log.d(TAG, "Waiting for button click");
         btnOCR.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                processImage(v);
+                Log.d(TAG, "Click and OCR");
+                processImage();
             }
         });
     }
 
-    public void processImage(View view){
+    public void processImage(){
         String OCRresult = null;
         mTess.setImage(image);
         OCRresult = mTess.getUTF8Text();
+        Log.d(TAG, OCRresult);
         TextView OCRTextView = (TextView) findViewById(R.id.OCRTextView);
         OCRTextView.setText(OCRresult);
+
     }
 
     private void checkFile(File dir) {
