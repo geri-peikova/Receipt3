@@ -24,7 +24,6 @@ public class OCR extends AppCompatActivity {
 
     private static final String TAG = OCR.class.getSimpleName();
     Receipt originalReceipt;
-    Receipt demoReceipt;
     Button btnOCR;
     Bitmap image;
     private TessBaseAPI mTess;
