@@ -6,53 +6,42 @@
     android:background="@drawable/background">
 
     <Button
-        android:id="@+id/btnCapture"
+        android:id="@+id/btnSplitEqually"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="17dp"
+        android:layout_marginBottom="63dp"
         android:background="@drawable/button_shape"
-        android:text="Take picture" />
+        android:text="Equally" />
 
     <Button
-        android:id="@+id/btnConfirmCapture"
+        android:id="@+id/btnSplitSeparately"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_above="@+id/btnCapture"
-        android:layout_alignStart="@+id/btnCapture"
-        android:text="Confirm"
-        android:background="@drawable/button_shape"/>
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btnCapture"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="144dp"
-        android:minHeight="300dp"
-        android:minWidth="300dp"
-        android:onClick="launchCamera"
-        android:text="Take picture" />
+        android:layout_above="@+id/btnSplitEqually"
+        android:layout_alignStart="@+id/btnSplitEqually"
+        android:layout_marginBottom="41dp"
+        android:background="@drawable/button_shape"
+        android:text="Separately" />
 
     <ImageView
         android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="45dp"
         app:srcCompat="@drawable/logo" />
 
+
     <TextView
-        android:id="@+id/textLogo"
+        android:id="@+id/textInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/logo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
-        android:text="Bill Splitter"
+        android:layout_centerVertical="true"
+        android:text="How do you want to separate the bill?"
         android:textColor="@android:color/black"
-        android:textSize="40dp" />
+        android:textSize="21dp" />
 </RelativeLayout>
