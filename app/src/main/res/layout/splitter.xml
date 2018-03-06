@@ -46,10 +46,13 @@
         android:textSize="21dp" />
 
     <ImageButton
-        android:id="@+id/arrow_str"
+        android:id="@+id/btnArrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:background=""/>
+        android:layout_marginTop="18dp"
+        android:layout_toStartOf="@+id/btnSplitSeparately"
+        android:background="null"
+        app:srcCompat="@drawable/white_arrow" />
+
 </RelativeLayout>

@@ -6,24 +6,14 @@
     android:background="@drawable/background">
 
     <Button
-        android:id="@+id/btnSplitEqually"
+        android:id="@+id/btnTotalCustomers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="63dp"
+        android:layout_marginBottom="137dp"
         android:background="@drawable/button_shape"
-        android:text="Equally" />
-
-    <Button
-        android:id="@+id/btnSplitSeparately"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btnSplitEqually"
-        android:layout_alignStart="@+id/btnSplitEqually"
-        android:layout_marginBottom="41dp"
-        android:background="@drawable/button_shape"
-        android:text="Separately" />
+        android:text="Total customers" />
 
     <ImageView
         android:id="@+id/logo"
@@ -34,14 +24,26 @@
         android:layout_marginTop="45dp"
         app:srcCompat="@drawable/logo" />
 
-
     <TextView
-        android:id="@+id/textInfo"
+        android:id="@+id/textLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/logo"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="How many people"
+        android:layout_marginTop="28dp"
+        android:text="Bill Splitter"
         android:textColor="@android:color/black"
-        android:textSize="21dp" />
+        android:textSize="40dp" />
+
+    <ImageButton
+        android:id="@+id/btnArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp"
+        android:layout_toStartOf="@+id/btnTotalCustomers"
+        android:background="null"
+        app:srcCompat="@drawable/white_arrow" />
+
+
 </RelativeLayout>
