@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnCapture"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="144dp"
+        android:minHeight="300dp"
+        android:minWidth="300dp"
+        android:onClick="launchCamera"
+        android:text="Take picture" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnArrow"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/rsz_logo" />
+
+    <Button
+        android:id="@+id/btnTotalCustomers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="13dp"
+        android:background="@drawable/button_shape"
+        android:text="New Receipt" />
+
+    <ImageButton
+        android:id="@+id/btnArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp"
+        android:layout_toStartOf="@+id/btnTotalCustomers"
+        android:background="null"
+        app:srcCompat="@drawable/white_arrow" />
+
+    <EditText
+        android:id="@+id/txtTotal"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@+id/imageView"
+        android:layout_below="@+id/logo"
+        android:layout_marginTop="15dp"
+        android:text="Total"
+        android:textSize="24dp" />
+
+    <EditText
+        android:id="@+id/txtPerEach"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@+id/txtTotal"
+        android:layout_below="@+id/txtTotal"
+        android:text="PerEach"
+        android:textSize="24dp" />
+
+    <EditText
+        android:id="@+id/txtTip"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@+id/txtPerEach"
+        android:layout_below="@+id/txtPerEach"
+        android:text="Tip"
+        android:textSize="24dp" />
+
+</RelativeLayout>
