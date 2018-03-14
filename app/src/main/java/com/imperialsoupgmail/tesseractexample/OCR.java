@@ -54,6 +54,8 @@ public class OCR extends AppCompatActivity {
             }
         });
     }
+
+
     public void processImage(){
         String[] text = null;
         String OCRresult = null;

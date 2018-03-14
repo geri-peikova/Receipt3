@@ -52,7 +52,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="18dp"
         android:layout_toStartOf="@+id/btnSplitSeparately"
-        android:background="null"
+        android:background="@null"
         app:srcCompat="@drawable/white_arrow" />
 
 </RelativeLayout>

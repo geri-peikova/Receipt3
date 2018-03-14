@@ -42,7 +42,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="15dp"
         android:layout_toStartOf="@+id/btnTotalCustomers"
-        android:background="null"
+        android:background="@null"
         app:srcCompat="@drawable/white_arrow" />
 
     <EditText
