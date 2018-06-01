@@ -23,8 +23,8 @@ import java.util.List;
 public class OCR extends AppCompatActivity {
 
     private static final String TAG = OCR.class.getSimpleName();
-    Receipt originalReceipt;
     Button btnOCR;
+    Receipt originalReceipt;
     Bitmap image;
     private TessBaseAPI mTess;
     String datapath = "";
