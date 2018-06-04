@@ -77,6 +77,7 @@ public class Capture extends AppCompatActivity {
             btnConfirmCapture.setVisibility(View.VISIBLE);
             logo.setVisibility(View.INVISIBLE);
             textLogo.setVisibility(View.INVISIBLE);
+
             btnConfirmCapture.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View v){
                     Log.d(TAG, "Switch to OCR");

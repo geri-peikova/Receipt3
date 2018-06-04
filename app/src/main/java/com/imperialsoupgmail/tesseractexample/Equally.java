@@ -1,5 +1,7 @@
 package com.imperialsoupgmail.tesseractexample;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -9,8 +11,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by gery on 1/29/2018.
@@ -21,71 +25,45 @@ public class Equally extends AppCompatActivity {
     private static final String TAG = Equally.class.getSimpleName();
 
     Button btnTotalCustomers;
-    Button btnConfirmCapture;
-    ImageView logo;
-    ImageView imageView;
-    TextView textLogo;
-    static final int REQUEST_IMAGE_CAPTURE = 1;
-    static private Bitmap photo = null;
+    EditText txtTotal;
+    EditText txtPerEach;
+    EditText txtTip;
+    Button btnNewReceipt;
+    public int totalCustomers;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.capture);
+        setContentView(R.layout.equally);
 
-        btnCapture = (Button) findViewById(R.id.btnCapture);
-        btnConfirmCapture = (Button) findViewById(R.id.btnConfirmCapture);
-        logo = (ImageView) findViewById(R.id.logo);
-        imageView = (ImageView) findViewById(R.id.imageView);
-        textLogo = (TextView) findViewById(R.id.textLogo);
-        btnConfirmCapture.setVisibility(View.INVISIBLE);
+        totalCustomers = 0;
+        btnTotalCustomers = (Button) findViewById(R.id.btnTotalCustomers);
+        btnNewReceipt = (Button) findViewById(R.id.btnNewReceipt);
+        txtTotal = (EditText) findViewById(R.id.txtTotal);
+        txtPerEach = (EditText) findViewById(R.id.txtPerEach);
+        txtTip = (EditText) findViewById(R.id.txtTip);
 
-        if(!hasCamera()){
-            Log.d(TAG, "Camera is not available");
-            btnCapture.setEnabled(false);
-        }else {
-            Log.d(TAG, "Camera launch");
-            btnCapture.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    launchCamera();
-                }
-            });
-        }
+        btnNewReceipt.setVisibility(View.INVISIBLE);
+        txtTotal.setVisibility(View.INVISIBLE);
+        txtPerEach.setVisibility(View.INVISIBLE);
+        txtTip.setVisibility(View.INVISIBLE);
+
 
     }
 
-    private boolean hasCamera(){
-        return getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA);
-    }
+    public void popUpCount(View v){
+        AlertDialog.Builder builder = new AlertDialog.Builder(Equally.this);
+        builder.setTitle("Between how may people do you want to split te bill?");
 
-    public void launchCamera(){
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
-            Bundle extras = data.getExtras();
-            photo = (Bitmap) extras.get("data");
-            imageView.setImageBitmap(photo);
-            btnConfirmCapture.setVisibility(View.VISIBLE);
-            logo.setVisibility(View.INVISIBLE);
-            textLogo.setVisibility(View.INVISIBLE);
-            btnConfirmCapture.setOnClickListener(new View.OnClickListener(){
-                public void onClick(View v){
-                    Log.d(TAG, "Switch to OCR");
-
-                    Intent myIntent = new Intent(Equally.this, OCR.class);
-                    Equally.this.startActivity(myIntent);
-                }
-            });
-
-        }
+        builder.setSingleChoiceItems(R.array.ip, 2, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                totalCustomers = which;
+            }
+        });
+        builder.show();
 
     }
 
-    static public Bitmap getPhoto(){
-        return photo;
-    }
 }

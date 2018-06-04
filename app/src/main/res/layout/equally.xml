@@ -38,7 +38,7 @@
         android:textSize="40dp" />
 
     <Button
-        android:id="@+id/btnTotalCustomers"
+        android:id="@+id/btnNewReceipt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -74,5 +74,14 @@
         android:layout_below="@+id/txtPerEach"
         android:text="Tip"
         android:textSize="24dp" />
+
+    <Button
+        android:id="@+id/btnTotalCustomers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txtTip"
+        android:layout_alignStart="@+id/btnNewReceipt"
+        android:background="@drawable/button_shape"
+        android:text="Total customers" />
 
 </RelativeLayout>
