@@ -24,7 +24,6 @@ import java.util.List;
 public class OCR extends AppCompatActivity {
 
     private static final String TAG = OCR.class.getSimpleName();
-    Button btnOCR;
     Receipt originalReceipt;
     Bitmap image;
     private TessBaseAPI mTess;
@@ -36,8 +35,6 @@ public class OCR extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ocr);
 
-        btnOCR = (Button)findViewById(R.id.btnOCR);
-        //init image
         image = BitmapFactory.decodeResource(getResources(), R.drawable.bill_bg);//TODO: Change the image to be the one u take with the camera
 
         //initialize Tesseract API
@@ -48,13 +45,8 @@ public class OCR extends AppCompatActivity {
         checkFile(new File(datapath + "tessdata/"));
 
         mTess.init(datapath, language);
+        processImage();
         Log.d(TAG, "Waiting for button click");
-        btnOCR.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Log.d(TAG, "Click and OCR");
-                processImage();
-            }
-        });
     }
 
 
@@ -67,12 +59,8 @@ public class OCR extends AppCompatActivity {
         TextView OCRTextView = (TextView) findViewById(R.id.OCRTextView);
         OCRTextView.setText(OCRresult);
 
-        Intent myIntent = new Intent(OCR.this, ChoiceSpl.class);
-        OCR.this.startActivity(myIntent);
-
         Intent intent = new Intent(OCR.this, Equally.class);
         intent.putExtra("TOTAL_PRICE", total);
-
     }
 
     private void extractOrder(String OCRresult){

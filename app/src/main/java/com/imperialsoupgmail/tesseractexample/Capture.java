@@ -82,7 +82,7 @@ public class Capture extends AppCompatActivity {
                 public void onClick(View v){
                     Log.d(TAG, "Switch to OCR");
 
-                    Intent myIntent = new Intent(Capture.this, OCR.class);
+                    Intent myIntent = new Intent(Capture.this, ChoiceSpl.class);
                     Capture.this.startActivity(myIntent);
                 }
             });

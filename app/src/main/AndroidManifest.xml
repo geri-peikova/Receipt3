@@ -18,6 +18,9 @@
         </activity>
 
         <activity android:name=".OCR"/>
+        <activity android:name=".ChoiceSpl"/>
+        <activity android:name=".Equally"/>
+        <activity android:name=".Separatelly"/>
 
     </application>
 
