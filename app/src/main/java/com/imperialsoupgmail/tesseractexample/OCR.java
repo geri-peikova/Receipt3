@@ -1,5 +1,6 @@
 package com.imperialsoupgmail.tesseractexample;
 
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -28,6 +29,7 @@ public class OCR extends AppCompatActivity {
     Bitmap image;
     private TessBaseAPI mTess;
     String datapath = "";
+    public double total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +67,16 @@ public class OCR extends AppCompatActivity {
         TextView OCRTextView = (TextView) findViewById(R.id.OCRTextView);
         OCRTextView.setText(OCRresult);
 
+        Intent myIntent = new Intent(OCR.this, ChoiceSpl.class);
+        OCR.this.startActivity(myIntent);
+
+        Intent intent = new Intent(OCR.this, Equally.class);
+        intent.putExtra("TOTAL_PRICE", total);
+
     }
 
     private void extractOrder(String OCRresult){
+        total = 0;
         originalReceipt = new Receipt();
         String[] text = null;
         text = OCRresult.split("\n+");
@@ -119,9 +128,11 @@ public class OCR extends AppCompatActivity {
                     tokens[tokens.length - 2] = tokens[tokens.length - 2].replace(',', '.');
                     tokens[tokens.length - 1] = tokens[tokens.length - 1].replace(',', '.');
                     addOrderToOriginalReceipt(name, tokens[tokens.length - 2], tokens[tokens.length - 1]);
+                    total+=Double.parseDouble(tokens[tokens.length - 1]);
                 }
             }
         }
+        Log.d(TAG, Double.toString(total));
     }
 
     private void addOrderToOriginalReceipt(String name, String count, String price){

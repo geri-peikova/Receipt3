@@ -50,7 +50,7 @@ public class ChoiceSpl extends AppCompatActivity {
             public void onClick(View v){
                 Log.d(TAG, "Switch to OCR");
 
-                Intent myIntent = new Intent(ChoiceSpl.this, Separately.class);
+                Intent myIntent = new Intent(ChoiceSpl.this, Separatelly.class);
                 ChoiceSpl.this.startActivity(myIntent);
             }
         });

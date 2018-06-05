@@ -2,18 +2,11 @@ package com.imperialsoupgmail.tesseractexample;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -30,13 +23,16 @@ public class Equally extends AppCompatActivity {
     EditText txtTip;
     Button btnNewReceipt;
     public int totalCustomers;
+    public double total_price;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.equally);
+        Bundle extras = getIntent().getExtras();
 
+        total_price = extras.getDouble("TOTAL_PRICE");
         totalCustomers = 0;
         btnTotalCustomers = (Button) findViewById(R.id.btnTotalCustomers);
         btnNewReceipt = (Button) findViewById(R.id.btnNewReceipt);
@@ -56,6 +52,13 @@ public class Equally extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(Equally.this);
         builder.setTitle("Between how may people do you want to split te bill?");
 
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(Equally.this, totalCustomers, Toast.LENGTH_SHORT).show();
+
+            }
+        });
         builder.setSingleChoiceItems(R.array.ip, 2, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -63,6 +66,18 @@ public class Equally extends AppCompatActivity {
             }
         });
         builder.show();
+
+    }
+
+    public void info(int count){
+        txtTotal.setVisibility(View.VISIBLE);
+        txtPerEach.setVisibility(View.VISIBLE);
+        txtTip.setVisibility(View.VISIBLE);
+        btnNewReceipt.setVisibility(View.VISIBLE);
+        btnTotalCustomers.setVisibility(View.INVISIBLE);
+
+        txtTotal.setText("Total: " + total_price);
+
 
     }
 
