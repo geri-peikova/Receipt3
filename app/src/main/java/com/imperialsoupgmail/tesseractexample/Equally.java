@@ -35,15 +35,16 @@ public class Equally extends AppCompatActivity {
     Receipt originalReceipt;
     Bitmap image;
     private TessBaseAPI mTess;
-    String datapath = "";
-    public double total_price;
+    private String datapath = "";
+    private double total_price;
 
     TextView txtTotal;
     TextView txtPerEach;
     TextView txtTip;
     Button btnTotalCustomers;
     Button btnNewReceipt;
-    public int totalCustomers;
+    private int totalCustomers;
+    private String num;
 
 
     @Override
@@ -52,6 +53,7 @@ public class Equally extends AppCompatActivity {
         setContentView(R.layout.equally);
 
         totalCustomers = 0;
+        num = null;
         btnTotalCustomers = (Button) findViewById(R.id.btnTotalCustomers);
         btnNewReceipt = (Button) findViewById(R.id.btnNewReceipt);
         txtTotal = (TextView) findViewById(R.id.txtTotal);
@@ -76,50 +78,103 @@ public class Equally extends AppCompatActivity {
         processImage();
         Log.d(TAG, "Waiting for button click");
 
-        btnTotalCustomers.setOnClickListener(new View.OnClickListener() {
+
+        if(totalCustomers!=0){
+            txtTotal.setVisibility(View.VISIBLE);
+            txtPerEach.setVisibility(View.VISIBLE);
+            txtTip.setVisibility(View.VISIBLE);
+            btnNewReceipt.setVisibility(View.VISIBLE);
+            btnTotalCustomers.setVisibility(View.INVISIBLE);
+            double result = total_price/totalCustomers;
+
+            //  DecimalFormat df = new DecimalFormat("#.##");
+            //  result = Double.valueOf(df.format(result));
+
+            txtTotal.setText("Total: " + total_price/2 + " lv");
+            // txtPerEach.setText("Per each: " + result + " lv");
+
+            //  result = result*totalCustomers - total_price;
+            //  txtTip.setText("Tip: " + result + " lv");
+
+
+            btnNewReceipt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent myIntent = new Intent(Equally.this, Capture.class);
+                    Equally.this.startActivity(myIntent);
+                }
+            });
+        }else{
+            btnTotalCustomers.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final PopupMenu ppMenu = new PopupMenu(Equally.this, btnTotalCustomers);
+                    ppMenu.getMenuInflater().inflate(R.menu.popup_count, ppMenu.getMenu());
+                    ppMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            num = item.toString();
+                            totalCustomers = Integer.parseInt(num);
+                            Toast.makeText(Equally.this, "" + item.getTitle(), Toast.LENGTH_SHORT).show();
+                            txtTotal.setVisibility(View.VISIBLE);
+                            txtPerEach.setVisibility(View.VISIBLE);
+                            txtTip.setVisibility(View.VISIBLE);
+                            btnNewReceipt.setVisibility(View.VISIBLE);
+                            btnTotalCustomers.setVisibility(View.INVISIBLE);
+                            total_price/=2;
+                            double result = total_price/totalCustomers;
+
+                            DecimalFormat df = new DecimalFormat("#.##");
+                            result = Double.valueOf(df.format(result));
+
+                            txtTotal.setText("Total: " + total_price + " lv");
+                            txtPerEach.setText("Per each: " + result + " lv");
+
+                            result = total_price - result*totalCustomers;
+                            txtTip.setText("Tip: " + result + " lv");
+
+
+                            btnNewReceipt.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent myIntent = new Intent(Equally.this, Capture.class);
+                                    Equally.this.startActivity(myIntent);
+                                }
+                            });
+
+                           return true;
+                        }
+                    });
+                    ppMenu.show();
+                }
+
+            });
+        }
+
+
+    }
+
+    public void popupMenu(final Button button){
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final PopupMenu ppMenu = new PopupMenu(Equally.this,btnTotalCustomers);
-                ppMenu.getMenuInflater().inflate(R.menu.popup_count,ppMenu.getMenu());
+                final PopupMenu ppMenu = new PopupMenu(Equally.this, button);
+                ppMenu.getMenuInflater().inflate(R.menu.popup_count, ppMenu.getMenu());
                 ppMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        String num = (item.getTitle()).toString();
+
                         Toast.makeText(Equally.this, "" + item.getTitle(), Toast.LENGTH_SHORT).show();
-                        totalCustomers = Integer.parseInt(num);
+                        num = item.toString();
+                        if (num != null) {
+                            totalCustomers = Integer.parseInt(num);
+                        }
                         return true;
                     }
                 });
                 ppMenu.show();
-
-                txtTotal.setVisibility(View.VISIBLE);
-                txtPerEach.setVisibility(View.VISIBLE);
-                txtTip.setVisibility(View.VISIBLE);
-                btnNewReceipt.setVisibility(View.VISIBLE);
-                btnTotalCustomers.setVisibility(View.INVISIBLE);
-                double result = total_price/totalCustomers;
             }
 
-        });
-
-
-
-    /**    DecimalFormat df = new DecimalFormat("#.##");
-        result = Double.valueOf(df.format(result));
-
-        txtTotal.setText("Total: " + total_price + " lv");
-        txtPerEach.setText("Per each: " + result + " lv");
-
-        result = result*totalCustomers - total_price;
-        txtTip.setText("Tip: " + result + " lv");
-**/
-
-        btnNewReceipt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent myIntent = new Intent(Equally.this, Capture.class);
-                Equally.this.startActivity(myIntent);
-            }
         });
     }
 
