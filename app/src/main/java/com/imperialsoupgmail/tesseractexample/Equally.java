@@ -130,7 +130,8 @@ public class Equally extends AppCompatActivity {
                             txtTotal.setText("Total: " + total_price + " lv");
                             txtPerEach.setText("Per each: " + result + " lv");
 
-                            result = total_price - result*totalCustomers;
+                            result = result*totalCustomers - total_price;
+                            result = Double.valueOf(df.format(result));
                             txtTip.setText("Tip: " + result + " lv");
 
 

@@ -79,8 +79,9 @@
         android:id="@+id/btnTotalCustomers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/txtTip"
+        android:layout_alignBottom="@+id/btnNewReceipt"
         android:layout_alignStart="@+id/btnNewReceipt"
+        android:layout_marginBottom="135dp"
         android:background="@drawable/button_shape"
         android:text="Total customers" />
 

@@ -6,27 +6,27 @@
     android:background="@drawable/background">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btnCapture"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="144dp"
-        android:minHeight="300dp"
-        android:minWidth="300dp"
-        android:onClick="launchCamera"
-        android:text="Take picture" />
-
-    <ImageView
         android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnArrow"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="40dp"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/textLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo"
         android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/rsz_logo" />
+        android:layout_marginTop="28dp"
+        android:text="Bill Splitter"
+        android:textColor="@android:color/black"
+        android:textSize="40dp" />
 
     <Button
-        android:id="@+id/btnTotalCustomers"
+        android:id="@+id/btnNewReceipt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -35,42 +35,75 @@
         android:background="@drawable/button_shape"
         android:text="New Receipt" />
 
-    <ImageButton
-        android:id="@+id/btnArrow"
+    <TextView
+        android:id="@+id/txtFood"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/logo"
+        android:layout_centerHorizontal="true"
+        android:text="Food"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:background="#07000000"
+        android:textSize="24dp" />
+
+    <Button
+        android:id="@+id/btnTotalCustomers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="15dp"
-        android:layout_toStartOf="@+id/btnTotalCustomers"
-        android:background="@null"
-        app:srcCompat="@drawable/white_arrow" />
+        android:layout_alignBottom="@+id/btnNewReceipt"
+        android:layout_alignStart="@+id/btnNewReceipt"
+        android:layout_marginBottom="135dp"
+        android:background="@drawable/button_shape"
+        android:text="Total customers" />
 
-    <TextView
-        android:id="@+id/txtTotal"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_alignStart="@+id/imageView"
-        android:layout_below="@+id/logo"
-        android:layout_marginTop="15dp"
-        android:text="Total"
-        android:textSize="24dp" />
+    <Button
+        android:id="@+id/btnP1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnNewReceipt"
+        android:layout_alignStart="@+id/btnNewReceipt"
+        android:layout_marginBottom="335dp"
+        android:background="@drawable/button_shape"
+        android:text="P1" />
 
-    <TextView
-        android:id="@+id/txtPerEach"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_alignStart="@+id/txtTotal"
-        android:layout_below="@+id/txtTotal"
-        android:text="PerEach"
-        android:textSize="24dp" />
+    <Button
+        android:id="@+id/btnP2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnNewReceipt"
+        android:layout_alignStart="@+id/btnNewReceipt"
+        android:layout_marginBottom="268dp"
+        android:background="@drawable/button_shape"
+        android:text="P2" />
 
-    <TextView
-        android:id="@+id/txtTip"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_alignStart="@+id/txtPerEach"
-        android:layout_below="@+id/txtPerEach"
-        android:text="Tip"
-        android:textSize="24dp" />
+    <Button
+        android:id="@+id/btnP3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnNewReceipt"
+        android:layout_alignStart="@+id/btnNewReceipt"
+        android:layout_marginBottom="201dp"
+        android:background="@drawable/button_shape"
+        android:text="P3" />
 
+    <Button
+        android:id="@+id/btnP4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnNewReceipt"
+        android:layout_alignStart="@+id/btnNewReceipt"
+        android:layout_marginBottom="134dp"
+        android:background="@drawable/button_shape"
+        android:text="P4" />
+
+    <Button
+        android:id="@+id/btnP5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnNewReceipt"
+        android:layout_alignStart="@+id/btnNewReceipt"
+        android:layout_marginBottom="67dp"
+        android:background="@drawable/button_shape"
+        android:text="P5" />
 </RelativeLayout>

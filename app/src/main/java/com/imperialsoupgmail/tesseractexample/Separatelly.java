@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,9 +39,14 @@ public class Separatelly extends AppCompatActivity {
     private String datapath = "";
     private double total_price;
 
-    TextView txtTotal;
-    TextView txtPerEach;
-    TextView txtTip;
+    ImageView imgLogo;
+    TextView txtLogo;
+    TextView txtFood;
+    Button btnP1;
+    Button btnP2;
+    Button btnP3;
+    Button btnP4;
+    Button btnP5;
     Button btnTotalCustomers;
     Button btnNewReceipt;
     private int totalCustomers;
@@ -54,16 +60,24 @@ public class Separatelly extends AppCompatActivity {
 
         totalCustomers = 0;
         num = null;
+        imgLogo = (ImageView) findViewById(R.id.logo);
+        txtLogo = (TextView) findViewById(R.id.textLogo);
         btnTotalCustomers = (Button) findViewById(R.id.btnTotalCustomers);
         btnNewReceipt = (Button) findViewById(R.id.btnNewReceipt);
-        txtTotal = (TextView) findViewById(R.id.txtTotal);
-        txtPerEach = (TextView) findViewById(R.id.txtPerEach);
-        txtTip = (TextView) findViewById(R.id.txtTip);
+        txtFood = (TextView) findViewById(R.id.txtFood);
+        btnP1 = (Button) findViewById(R.id.btnP1);
+        btnP2 = (Button) findViewById(R.id.btnP2);
+        btnP3= (Button) findViewById(R.id.btnP3);
+        btnP4 = (Button) findViewById(R.id.btnP4);
+        btnP5 = (Button) findViewById(R.id.btnP5);
 
         btnNewReceipt.setVisibility(View.INVISIBLE);
-        txtTotal.setVisibility(View.INVISIBLE);
-        txtPerEach.setVisibility(View.INVISIBLE);
-        txtTip.setVisibility(View.INVISIBLE);
+        txtFood.setVisibility(View.INVISIBLE);
+        btnP1.setVisibility(View.INVISIBLE);
+        btnP2.setVisibility(View.INVISIBLE);
+        btnP3.setVisibility(View.INVISIBLE);
+        btnP4.setVisibility(View.INVISIBLE);
+        btnP5.setVisibility(View.INVISIBLE);
 
         image = BitmapFactory.decodeResource(getResources(), R.drawable.bill_bg);//TODO: Change the image to be the one u take with the camera
 
@@ -80,9 +94,6 @@ public class Separatelly extends AppCompatActivity {
 
 
         if(totalCustomers!=0){
-            txtTotal.setVisibility(View.VISIBLE);
-            txtPerEach.setVisibility(View.VISIBLE);
-            txtTip.setVisibility(View.VISIBLE);
             btnNewReceipt.setVisibility(View.VISIBLE);
             btnTotalCustomers.setVisibility(View.INVISIBLE);
             double result = total_price/totalCustomers;
@@ -90,7 +101,6 @@ public class Separatelly extends AppCompatActivity {
             //  DecimalFormat df = new DecimalFormat("#.##");
             //  result = Double.valueOf(df.format(result));
 
-            txtTotal.setText("Total: " + total_price/2 + " lv");
             // txtPerEach.setText("Per each: " + result + " lv");
 
             //  result = result*totalCustomers - total_price;
@@ -116,22 +126,43 @@ public class Separatelly extends AppCompatActivity {
                             num = item.toString();
                             totalCustomers = Integer.parseInt(num);
                             Toast.makeText(Separatelly.this, "" + item.getTitle(), Toast.LENGTH_SHORT).show();
-                            txtTotal.setVisibility(View.VISIBLE);
-                            txtPerEach.setVisibility(View.VISIBLE);
-                            txtTip.setVisibility(View.VISIBLE);
+
                             btnNewReceipt.setVisibility(View.VISIBLE);
+                            imgLogo.setVisibility(View.INVISIBLE);
+                            txtLogo.setVisibility(View.INVISIBLE);
                             btnTotalCustomers.setVisibility(View.INVISIBLE);
+                            txtFood.setVisibility(View.VISIBLE);
+
+                            switch (totalCustomers) {
+                                case 1:  btnP1.setVisibility(View.VISIBLE);
+                                    break;
+                                case 2:  btnP1.setVisibility(View.VISIBLE);
+                                         btnP2.setVisibility(View.VISIBLE);
+                                    break;
+                                case 3:  btnP1.setVisibility(View.VISIBLE);
+                                         btnP2.setVisibility(View.VISIBLE);
+                                         btnP3.setVisibility(View.VISIBLE);
+                                    break;
+                                case 4:  btnP1.setVisibility(View.VISIBLE);
+                                         btnP2.setVisibility(View.VISIBLE);
+                                         btnP3.setVisibility(View.VISIBLE);;
+                                         btnP4.setVisibility(View.VISIBLE);
+                                    break;
+                                case 5:  btnP1.setVisibility(View.VISIBLE);
+                                         btnP2.setVisibility(View.VISIBLE);
+                                         btnP3.setVisibility(View.VISIBLE);
+                                         btnP4.setVisibility(View.VISIBLE);
+                                         btnP5.setVisibility(View.VISIBLE);
+                            }
                             total_price/=2;
                             double result = total_price/totalCustomers;
 
                             DecimalFormat df = new DecimalFormat("#.##");
                             result = Double.valueOf(df.format(result));
 
-                            txtTotal.setText("Total: " + total_price + " lv");
-                            txtPerEach.setText("Per each: " + result + " lv");
 
-                            result = total_price - result*totalCustomers;
-                            txtTip.setText("Tip: " + result + " lv");
+                            result = result*totalCustomers - total_price;
+                            result = Double.valueOf(df.format(result));
 
 
                             btnNewReceipt.setOnClickListener(new View.OnClickListener() {
