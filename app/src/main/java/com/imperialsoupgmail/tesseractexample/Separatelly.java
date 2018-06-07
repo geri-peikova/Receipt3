@@ -200,26 +200,8 @@ public class Separatelly extends AppCompatActivity {
                             }
 
                             orders = originalReceipt.countOrders();
-                            int count = 0;
-                                test = 0;
-                                    i = count;
-                                    Order rd = originalReceipt.getOrder(1);
-                                    String name = rd.getName();
-                                    txtFood.setText(name);
-
-                                    btnP1.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            Order rd = originalReceipt.getOrder(1);
-                                            Double num = rd.getPrice();
-                                            price1+=num;
-                                            count1++;
-
-                                            btnP1.setText("     Person 1               " + count1 + "                  " + price1 + " lv");
-                                            test = 1;
-
-                                        }
-                                    });
+                                    i = 0;
+                                   foodClicker(0);
 
                          //   "     Person 1          " + count1 + "               " + originalReceipt.getOrder(i).getPrice()
 
@@ -350,12 +332,23 @@ public class Separatelly extends AppCompatActivity {
                     }
                     tokens[tokens.length - 2] = tokens[tokens.length - 2].replace(',', '.');
                     tokens[tokens.length - 1] = tokens[tokens.length - 1].replace(',', '.');
+                    Double c = Double.parseDouble(tokens[tokens.length - 2]);
                     addOrderToOriginalReceipt(name, tokens[tokens.length - 2], tokens[tokens.length - 1]);
-                    total_price+=Double.parseDouble(tokens[tokens.length - 1]);
+                    if(c > 1.00 && c<20){
+                        for(int n = 1; n < c;n++) {
+                            addOrderToOriginalReceipt(name + "(" + n + ")", tokens[tokens.length - 2], tokens[tokens.length - 1]);
+                        }
+                    }
+
                 }
             }
         }
+        int last = originalReceipt.countOrders()- 1;
+        Order ord=originalReceipt.getOrder(last);
+        originalReceipt.removeOrder(ord);
+
         Log.d(TAG, Double.toString(total_price));
+
     }
 
     private void addOrderToOriginalReceipt(String name, String count, String price){
@@ -369,9 +362,41 @@ public class Separatelly extends AppCompatActivity {
         originalReceipt.addOrder(order);
     }
 
-    private void foodClicker(){
+    private void foodClicker(int counter){
+        i=counter;
+        Order rd = originalReceipt.getOrder(i);
+        String name = rd.getName();
+        txtFood.setText(name);
 
-    }//todo: cikul kojto vurti ranata i pri klikvane na buton broiat i cenata se uveli4avat pri Pn
+        btnP1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Order rd = originalReceipt.getOrder(i);
+                Double num = rd.getPrice();
+                DecimalFormat df = new DecimalFormat("#.##");
+                num = Double.valueOf(df.format(num));
+                price1+=num;
+                price1 = Double.valueOf(df.format(price1));
+                count1++;
+
+                btnP1.setText("     Person 1               " + count1 + "                  " + price1 + " lv");
+                i++;
+                int sum = orders-1;
+                if(i <= sum){
+                    foodClicker(i);
+                }else{
+
+                    btnP1.setEnabled(false);
+                    btnP2.setEnabled(false);
+                    btnP3.setEnabled(false);
+                    btnP4.setEnabled(false);
+                    btnP5.setEnabled(false);
+
+                }
+
+            }
+        });
+    }
 
 
     private void checkFile(File dir) {

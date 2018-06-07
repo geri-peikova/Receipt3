@@ -126,11 +126,18 @@ public class Equally extends AppCompatActivity {
 
                             DecimalFormat df = new DecimalFormat("#.##");
                             result = Double.valueOf(df.format(result));
+                            if(result<0){
+                                result+=totalCustomers*0.01;
+                            }
 
                             txtTotal.setText("Total: " + total_price + " lv");
                             txtPerEach.setText("Per each: " + result + " lv");
 
                             result = result*totalCustomers - total_price;
+                            if(result<0){
+                                result+=totalCustomers*0.01;
+                            }
+
                             result = Double.valueOf(df.format(result));
                             txtTip.setText("Tip: " + result + " lv");
 

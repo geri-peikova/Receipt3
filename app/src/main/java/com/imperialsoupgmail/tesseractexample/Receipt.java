@@ -24,14 +24,9 @@ public class Receipt {
 
     public int countOrders(){
         int count = 0;
-        int last = 0;
         for (Order i: receipt) {
-            if(i.getCount()>1){
-                count+=(int)i.getCount();
-            }else count+=1;
-            last = (int)i.getCount();
+            count++;
         }
-        count-=last;
         return count;
     }
 
