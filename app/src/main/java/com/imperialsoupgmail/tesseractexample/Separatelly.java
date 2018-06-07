@@ -394,6 +394,36 @@ public class Separatelly extends AppCompatActivity {
 
                 }
 
+
+
+            }
+        });
+
+        btnP2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Order rd = originalReceipt.getOrder(i);
+                Double num = rd.getPrice();
+                DecimalFormat df = new DecimalFormat("#.##");
+                num = Double.valueOf(df.format(num));
+                price2+=num;
+                price2 = Double.valueOf(df.format(price2));
+                count2++;
+
+                btnP2.setText("     Person 2               " + count2 + "                  " + price2 + " lv");
+                i++;
+                int sum = orders-1;
+                if(i <= sum){
+                    foodClicker(i);
+                }else{
+
+                    btnP1.setEnabled(false);
+                    btnP2.setEnabled(false);
+                    btnP3.setEnabled(false);
+                    btnP4.setEnabled(false);
+                    btnP5.setEnabled(false);
+
+                }
             }
         });
     }
