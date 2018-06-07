@@ -47,6 +47,17 @@ public class Separatelly extends AppCompatActivity {
     int count4;
     int count5;
 
+    int test;
+
+    Double price1;
+    Double price2;
+    Double price3;
+    Double price4;
+    Double price5;
+
+
+
+
     Receipt originalReceipt;
     Bitmap image;
     private TessBaseAPI mTess;
@@ -84,6 +95,12 @@ public class Separatelly extends AppCompatActivity {
         count3 = 0;
         count4 = 0;
         count5 = 0;
+
+        price1 = 0.00;
+        price2 = 0.00;
+        price3 = 0.00;
+        price4 = 0.00;
+        price5 = 0.00;
 
         totalCustomers = 0;
         num = null;
@@ -183,6 +200,27 @@ public class Separatelly extends AppCompatActivity {
                             }
 
                             orders = originalReceipt.countOrders();
+                            int count = 0;
+                                test = 0;
+                                    i = count;
+                                    Order rd = originalReceipt.getOrder(1);
+                                    String name = rd.getName();
+                                    txtFood.setText(name);
+
+                                    btnP1.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Order rd = originalReceipt.getOrder(1);
+                                            Double num = rd.getPrice();
+                                            price1+=num;
+                                            count1++;
+
+                                            btnP1.setText("     Person 1               " + count1 + "                  " + price1 + " lv");
+                                            test = 1;
+
+                                        }
+                                    });
+
                          //   "     Person 1          " + count1 + "               " + originalReceipt.getOrder(i).getPrice()
 
 
