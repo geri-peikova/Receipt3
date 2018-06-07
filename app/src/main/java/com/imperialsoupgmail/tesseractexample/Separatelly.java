@@ -308,6 +308,10 @@ public class Separatelly extends AppCompatActivity {
         originalReceipt.addOrder(order);
     }
 
+    private void foodClicker(){
+        
+    }//todo: cikul kojto vurti ranata i pri klikvane na buton broiat i cenata se uveli4avat pri Pn
+
     private void checkFile(File dir) {
         if (!dir.exists()&& dir.mkdirs()){
             copyFiles();

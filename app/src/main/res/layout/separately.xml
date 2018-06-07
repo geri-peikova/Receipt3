@@ -45,7 +45,8 @@
         android:textAlignment="center"
         android:textColor="#000000"
         android:background="#07000000"
-        android:textSize="24dp" />
+        android:textSize="24dp"
+        android:textStyle="bold"/>
 
     <Button
         android:id="@+id/btnTotalCustomers"
@@ -65,7 +66,8 @@
         android:layout_alignStart="@+id/btnNewReceipt"
         android:layout_marginBottom="335dp"
         android:background="@drawable/button_shape"
-        android:text="P1" />
+        android:text="     P1"
+        android:textAlignment="textStart"/>
 
     <Button
         android:id="@+id/btnP2"

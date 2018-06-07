@@ -18,6 +18,14 @@ public class Receipt {
         receipt.add(a);
     }
 
+    public int countOrders(){
+        int count = 0;
+        for (Order i: receipt) {
+            count+=1;
+        }
+        return count;
+    }
+
     public void removeOrder(Order a){
         receipt.remove(a);
     }
