@@ -14,15 +14,24 @@ public class Receipt {
         receipt = new ArrayList<>();
     }
 
+    public Order getOrder(int i){
+        return receipt.get(i);
+    }
+
     public void addOrder(Order a){
         receipt.add(a);
     }
 
     public int countOrders(){
         int count = 0;
+        int last = 0;
         for (Order i: receipt) {
-            count+=1;
+            if(i.getCount()>1){
+                count+=(int)i.getCount();
+            }else count+=1;
+            last = (int)i.getCount();
         }
+        count-=last;
         return count;
     }
 

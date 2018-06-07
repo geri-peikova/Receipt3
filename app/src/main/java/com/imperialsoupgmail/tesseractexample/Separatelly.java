@@ -33,6 +33,20 @@ import java.util.concurrent.TimeUnit;
 public class Separatelly extends AppCompatActivity {
     private static final String TAG = Separatelly.class.getSimpleName();
 
+    Receipt rcp1;
+    Receipt rcp2;
+    Receipt rcp3;
+    Receipt rcp4;
+    Receipt rcp5;
+
+    int orders;
+    int i;
+    int count1;
+    int count2;
+    int count3;
+    int count4;
+    int count5;
+
     Receipt originalReceipt;
     Bitmap image;
     private TessBaseAPI mTess;
@@ -57,6 +71,19 @@ public class Separatelly extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.separately);
+
+        rcp1 = new Receipt();
+        rcp2 = new Receipt();
+        rcp3 = new Receipt();
+        rcp4 = new Receipt();
+        rcp5 = new Receipt();
+
+
+        count1 = 0;
+        count2 = 0;
+        count3 = 0;
+        count4 = 0;
+        count5 = 0;
 
         totalCustomers = 0;
         num = null;
@@ -154,15 +181,11 @@ public class Separatelly extends AppCompatActivity {
                                          btnP4.setVisibility(View.VISIBLE);
                                          btnP5.setVisibility(View.VISIBLE);
                             }
-                            total_price/=2;
-                            double result = total_price/totalCustomers;
 
-                            DecimalFormat df = new DecimalFormat("#.##");
-                            result = Double.valueOf(df.format(result));
+                            orders = originalReceipt.countOrders();
+                         //   "     Person 1          " + count1 + "               " + originalReceipt.getOrder(i).getPrice()
 
 
-                            result = result*totalCustomers - total_price;
-                            result = Double.valueOf(df.format(result));
 
 
                             btnNewReceipt.setOnClickListener(new View.OnClickListener() {
@@ -309,8 +332,9 @@ public class Separatelly extends AppCompatActivity {
     }
 
     private void foodClicker(){
-        
+
     }//todo: cikul kojto vurti ranata i pri klikvane na buton broiat i cenata se uveli4avat pri Pn
+
 
     private void checkFile(File dir) {
         if (!dir.exists()&& dir.mkdirs()){

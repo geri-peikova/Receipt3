@@ -77,7 +77,8 @@
         android:layout_alignStart="@+id/btnNewReceipt"
         android:layout_marginBottom="268dp"
         android:background="@drawable/button_shape"
-        android:text="P2" />
+        android:text="     P2"
+        android:textAlignment="textStart"/>
 
     <Button
         android:id="@+id/btnP3"
@@ -87,7 +88,8 @@
         android:layout_alignStart="@+id/btnNewReceipt"
         android:layout_marginBottom="201dp"
         android:background="@drawable/button_shape"
-        android:text="P3" />
+        android:text="     P3"
+        android:textAlignment="textStart"/>
 
     <Button
         android:id="@+id/btnP4"
@@ -97,7 +99,8 @@
         android:layout_alignStart="@+id/btnNewReceipt"
         android:layout_marginBottom="134dp"
         android:background="@drawable/button_shape"
-        android:text="P4" />
+        android:text="     P4"
+        android:textAlignment="textStart"/>
 
     <Button
         android:id="@+id/btnP5"
@@ -107,5 +110,6 @@
         android:layout_alignStart="@+id/btnNewReceipt"
         android:layout_marginBottom="67dp"
         android:background="@drawable/button_shape"
-        android:text="P5" />
+        android:text="     P5"
+        android:textAlignment="textStart"/>
 </RelativeLayout>
