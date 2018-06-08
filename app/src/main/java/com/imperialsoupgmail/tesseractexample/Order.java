@@ -6,10 +6,10 @@ package com.imperialsoupgmail.tesseractexample;
 
 public class Order {
     private String name;
-    private double count;
-    private double price;
+    private Double count;
+    private Double price;
 
-    public Order(String name, double count, double price){
+    public Order(String name, Double count, Double price){
         this.name = name;
         this.count = count;
         this.price = price;
@@ -23,19 +23,19 @@ public class Order {
         this.name = name;
     }
 
-    public double getCount() {
+    public Double getCount() {
         return count;
     }
 
-    public void setCount(double count) {
+    public void setCount(Double count) {
         this.count = count;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 }

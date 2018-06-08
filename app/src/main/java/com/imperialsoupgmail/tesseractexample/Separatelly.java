@@ -1,5 +1,6 @@
 package com.imperialsoupgmail.tesseractexample;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -183,7 +185,7 @@ public class Separatelly extends AppCompatActivity {
                             btnTotalCustomers.setVisibility(View.INVISIBLE);
                             txtInfo.setVisibility(View.VISIBLE);
                             txtTotalS.setVisibility(View.VISIBLE);
-                            txtTotalS.setText(String.valueOf(total_price));
+                            txtTotalS.setText("Total: " + String.valueOf(total_price) + " lv");
                             txtFood.setVisibility(View.VISIBLE);
 
                             switch (totalCustomers) {
@@ -365,11 +367,19 @@ public class Separatelly extends AppCompatActivity {
             }
         }
         int last = originalReceipt.countOrders()- 1;
-        Order ord=originalReceipt.getOrder(last);
-        total_price-=ord.getPrice();
-        originalReceipt.removeOrder(ord);
+        if(last<0){
+            Toast.makeText(Separatelly.this, "Cannot resolve picture!", Toast.LENGTH_LONG).show();
+            Intent myIntent = new Intent(Separatelly.this, Capture.class);
+            Separatelly.this.startActivity(myIntent);
 
-        Log.d(TAG, Double.toString(total_price));
+        }else {
+            Order ord = originalReceipt.getOrder(last);
+            total_price -= ord.getPrice();
+            originalReceipt.removeOrder(ord);
+
+            Log.d(TAG, Double.toString(total_price));
+
+        }
 
     }
 
@@ -400,20 +410,28 @@ public class Separatelly extends AppCompatActivity {
                 price1+=num;
                 price1 = Double.valueOf(df.format(price1));
                 count1++;
+                rcp1.addOrder(rd);
 
-                btnP1.setText("     Person 1               " + count1 + "                  " + price1 + " lv");
+                btnP1.setText("     Person 1                " + count1 + "                  " + price1 + " lv");
+
+               btnHolder(btnP1,"Person 1", rcp1 );
                 i++;
                 int sum = orders-1;
                 if(i <= sum){
                     foodClicker(i);
                 }else{
+                    Toast.makeText(Separatelly.this, "NO MORE ORDERS!", Toast.LENGTH_LONG).show();
+                    clicker(btnP1);
+                    clicker(btnP2);
+                    clicker(btnP3);
+                    clicker(btnP4);
+                    clicker(btnP5);
 
-                    btnP1.setEnabled(false);
-                    btnP2.setEnabled(false);
-                    btnP3.setEnabled(false);
-                    btnP4.setEnabled(false);
-                    btnP5.setEnabled(false);
-
+                    btnHolder(btnP1,"Person 1", rcp1 );
+                    btnHolder(btnP2,"Person 2", rcp2 );
+                    btnHolder(btnP3,"Person 3", rcp3 );
+                    btnHolder(btnP4,"Person 4", rcp4 );
+                    btnHolder(btnP5,"Person 5", rcp5 );
                 }
 
 
@@ -431,19 +449,28 @@ public class Separatelly extends AppCompatActivity {
                 price2+=num;
                 price2 = Double.valueOf(df.format(price2));
                 count2++;
+                rcp2.addOrder(rd);
 
                 btnP2.setText("     Person 2               " + count2 + "                  " + price2 + " lv");
+
+                btnHolder(btnP2,"Person 2", rcp2 );
                 i++;
                 int sum = orders-1;
                 if(i <= sum){
                     foodClicker(i);
                 }else{
+                    Toast.makeText(Separatelly.this, "NO MORE ORDERS!", Toast.LENGTH_LONG).show();
+                    clicker(btnP1);
+                    clicker(btnP2);
+                    clicker(btnP3);
+                    clicker(btnP4);
+                    clicker(btnP5);
 
-                    btnP1.setEnabled(false);
-                    btnP2.setEnabled(false);
-                    btnP3.setEnabled(false);
-                    btnP4.setEnabled(false);
-                    btnP5.setEnabled(false);
+                    btnHolder(btnP1,"Person 1", rcp1 );
+                    btnHolder(btnP2,"Person 2", rcp2 );
+                    btnHolder(btnP3,"Person 3", rcp3 );
+                    btnHolder(btnP4,"Person 4", rcp4 );
+                    btnHolder(btnP5,"Person 5", rcp5 );
 
                 }
             }
@@ -459,19 +486,28 @@ public class Separatelly extends AppCompatActivity {
                 price3+=num;
                 price3 = Double.valueOf(df.format(price3));
                 count3++;
+                rcp3.addOrder(rd);
 
                 btnP3.setText("     Person 3               " + count3 + "                  " + price3 + " lv");
+
+                btnHolder(btnP3,"Person 3", rcp3 );
                 i++;
                 int sum = orders-1;
                 if(i <= sum){
                     foodClicker(i);
                 }else{
+                    Toast.makeText(Separatelly.this, "NO MORE ORDERS!", Toast.LENGTH_LONG).show();
+                    clicker(btnP1);
+                    clicker(btnP2);
+                    clicker(btnP3);
+                    clicker(btnP4);
+                    clicker(btnP5);
 
-                    btnP1.setEnabled(false);
-                    btnP2.setEnabled(false);
-                    btnP3.setEnabled(false);
-                    btnP4.setEnabled(false);
-                    btnP5.setEnabled(false);
+                    btnHolder(btnP1,"Person 1", rcp1 );
+                    btnHolder(btnP2,"Person 2", rcp2 );
+                    btnHolder(btnP3,"Person 3", rcp3 );
+                    btnHolder(btnP4,"Person 4", rcp4 );
+                    btnHolder(btnP5,"Person 5", rcp5 );
 
                 }
             }
@@ -487,19 +523,28 @@ public class Separatelly extends AppCompatActivity {
                 price4+=num;
                 price4 = Double.valueOf(df.format(price4));
                 count4++;
+                rcp4.addOrder(rd);
 
                 btnP4.setText("     Person 4               " + count4 + "                  " + price4 + " lv");
+
+                btnHolder(btnP4,"Person 4", rcp4 );
                 i++;
                 int sum = orders-1;
                 if(i <= sum){
                     foodClicker(i);
                 }else{
+                    Toast.makeText(Separatelly.this, "NO MORE ORDERS!", Toast.LENGTH_LONG).show();
+                    clicker(btnP1);
+                    clicker(btnP2);
+                    clicker(btnP3);
+                    clicker(btnP4);
+                    clicker(btnP5);
 
-                    btnP1.setEnabled(false);
-                    btnP2.setEnabled(false);
-                    btnP3.setEnabled(false);
-                    btnP4.setEnabled(false);
-                    btnP5.setEnabled(false);
+                    btnHolder(btnP1,"Person 1", rcp1 );
+                    btnHolder(btnP2,"Person 2", rcp2 );
+                    btnHolder(btnP3,"Person 3", rcp3 );
+                    btnHolder(btnP4,"Person 4", rcp4 );
+                    btnHolder(btnP5,"Person 5", rcp5 );
 
                 }
             }
@@ -515,19 +560,28 @@ public class Separatelly extends AppCompatActivity {
                 price5+=num;
                 price5 = Double.valueOf(df.format(price5));
                 count5++;
+                rcp5.addOrder(rd);
 
                 btnP5.setText("     Person 5               " + count5 + "                  " + price5 + " lv");
+
+                btnHolder(btnP5,"Person 5", rcp5 );
                 i++;
                 int sum = orders-1;
                 if(i <= sum){
                     foodClicker(i);
                 }else{
+                    Toast.makeText(Separatelly.this, "NO MORE ORDERS!", Toast.LENGTH_LONG).show();
+                    clicker(btnP1);
+                    clicker(btnP2);
+                    clicker(btnP3);
+                    clicker(btnP4);
+                    clicker(btnP5);
 
-                    btnP1.setEnabled(false);
-                    btnP2.setEnabled(false);
-                    btnP3.setEnabled(false);
-                    btnP4.setEnabled(false);
-                    btnP5.setEnabled(false);
+                    btnHolder(btnP1,"Person 1", rcp1 );
+                    btnHolder(btnP2,"Person 2", rcp2 );
+                    btnHolder(btnP3,"Person 3", rcp3 );
+                    btnHolder(btnP4,"Person 4", rcp4 );
+                    btnHolder(btnP5,"Person 5", rcp5 );
 
                 }
             }
@@ -603,6 +657,47 @@ public class Separatelly extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String convertToText(Receipt receipt){
+        String text="";
+        int count = receipt.countOrders();
+        for (int counter = 0; counter<count;counter++){
+            Order order = receipt.getOrder(counter);
+            String name = order.getName();
+            Double c = order.getCount();
+            String cn = Double.toString(c);
+            Double pr = order.getPrice();
+            String price = Double.toString(pr);
+
+            text+="\n" + name + "     " + price + "lv";
+
+        }
+
+        return text;
+    }
+
+    public void btnHolder(Button button, final String title, final Receipt receipt){
+        button.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                new AlertDialog.Builder(Separatelly.this)
+                        .setTitle(title)
+                        .setMessage("Order:                  Price: \n" + convertToText(receipt))
+                        .show();
+                return false;
+            }
+        });
+    }
+
+    public boolean clicker(Button button){
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        return false;
     }
 
 }
