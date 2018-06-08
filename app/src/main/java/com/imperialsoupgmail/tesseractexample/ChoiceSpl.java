@@ -25,7 +25,7 @@ public class ChoiceSpl extends AppCompatActivity {
     private static final String TAG = ChoiceSpl.class.getSimpleName();
     Button btnSplitSeparately;
     Button btnSplitEqually;
-
+    String bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

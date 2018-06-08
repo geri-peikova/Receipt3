@@ -45,6 +45,7 @@ public class Equally extends AppCompatActivity {
     Button btnNewReceipt;
     private int totalCustomers;
     private String num;
+    Bitmap bitmap;
 
 
     @Override
@@ -52,6 +53,7 @@ public class Equally extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.equally);
 
+        bitmap = CommonResources.photoFinishBitmap;
         totalCustomers = 0;
         num = null;
         btnTotalCustomers = (Button) findViewById(R.id.btnTotalCustomers);
@@ -65,7 +67,7 @@ public class Equally extends AppCompatActivity {
         txtPerEach.setVisibility(View.INVISIBLE);
         txtTip.setVisibility(View.INVISIBLE);
 
-        image = BitmapFactory.decodeResource(getResources(), R.drawable.bill_bg);//TODO: Change the image to be the one u take with the camera
+        image = bitmap;//TODO: Change the image to be the one u take with the camera
 
         //initialize Tesseract API
         String language = "bul";

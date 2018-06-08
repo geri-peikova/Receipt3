@@ -80,6 +80,7 @@ public class Separatelly extends AppCompatActivity {
     Button btnNewReceipt;
     private int totalCustomers;
     private String num;
+    Bitmap bitmap;
 
 
     @Override
@@ -131,7 +132,8 @@ public class Separatelly extends AppCompatActivity {
         btnP4.setVisibility(View.INVISIBLE);
         btnP5.setVisibility(View.INVISIBLE);
 
-        image = BitmapFactory.decodeResource(getResources(), R.drawable.bill_bg);//TODO: Change the image to be the one u take with the camera
+        bitmap=CommonResources.photoFinishBitmap;
+        image = bitmap;//TODO: Change the image to be the one u take with the camera
 
         //initialize Tesseract API
         String language = "bul";
