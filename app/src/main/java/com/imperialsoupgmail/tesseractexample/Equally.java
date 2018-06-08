@@ -273,6 +273,12 @@ public class Equally extends AppCompatActivity {
                 }
             }
         }
+        int last = originalReceipt.countOrders()- 1;
+        if(last<0){
+            Toast.makeText(Equally.this, "Cannot resolve picture!", Toast.LENGTH_LONG).show();
+            Intent myIntent = new Intent(Equally.this, Capture.class);
+            Equally.this.startActivity(myIntent);
+        }
         Log.d(TAG, Double.toString(total_price));
     }
 
