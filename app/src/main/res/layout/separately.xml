@@ -112,4 +112,29 @@
         android:background="@drawable/button_shape"
         android:text="     P5"
         android:textAlignment="textStart"/>
+
+    <TextView
+        android:id="@+id/txtInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnP1"
+        android:layout_alignStart="@+id/btnP1"
+        android:layout_marginStart="18dp"
+        android:text="    Person :         Orders:            Price:"
+        android:textAlignment="textStart"
+        android:textColor="#4d4d4d"
+        android:textSize="15dp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/txtTotalS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txtInfo"
+        android:layout_centerHorizontal="true"
+        android:text="Total: "
+        android:textAlignment="textStart"
+        android:textColor="#4d4d4d"
+        android:textSize="20dp"
+        android:textStyle="italic" />
 </RelativeLayout>

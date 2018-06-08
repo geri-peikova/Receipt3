@@ -65,6 +65,8 @@ public class Separatelly extends AppCompatActivity {
     private double total_price;
 
     ImageView imgLogo;
+    TextView txtInfo;
+    TextView txtTotalS;
     TextView txtLogo;
     TextView txtFood;
     Button btnP1;
@@ -106,6 +108,8 @@ public class Separatelly extends AppCompatActivity {
         num = null;
         imgLogo = (ImageView) findViewById(R.id.logo);
         txtLogo = (TextView) findViewById(R.id.textLogo);
+        txtInfo = (TextView) findViewById(R.id.txtInfo);
+        txtTotalS = (TextView) findViewById(R.id.txtTotalS);
         btnTotalCustomers = (Button) findViewById(R.id.btnTotalCustomers);
         btnNewReceipt = (Button) findViewById(R.id.btnNewReceipt);
         txtFood = (TextView) findViewById(R.id.txtFood);
@@ -116,6 +120,8 @@ public class Separatelly extends AppCompatActivity {
         btnP5 = (Button) findViewById(R.id.btnP5);
 
         btnNewReceipt.setVisibility(View.INVISIBLE);
+        txtTotalS.setVisibility(View.INVISIBLE);
+        txtInfo.setVisibility(View.INVISIBLE);
         txtFood.setVisibility(View.INVISIBLE);
         btnP1.setVisibility(View.INVISIBLE);
         btnP2.setVisibility(View.INVISIBLE);
@@ -175,6 +181,9 @@ public class Separatelly extends AppCompatActivity {
                             imgLogo.setVisibility(View.INVISIBLE);
                             txtLogo.setVisibility(View.INVISIBLE);
                             btnTotalCustomers.setVisibility(View.INVISIBLE);
+                            txtInfo.setVisibility(View.VISIBLE);
+                            txtTotalS.setVisibility(View.VISIBLE);
+                            txtTotalS.setText(String.valueOf(total_price));
                             txtFood.setVisibility(View.VISIBLE);
 
                             switch (totalCustomers) {
@@ -333,11 +342,23 @@ public class Separatelly extends AppCompatActivity {
                     tokens[tokens.length - 2] = tokens[tokens.length - 2].replace(',', '.');
                     tokens[tokens.length - 1] = tokens[tokens.length - 1].replace(',', '.');
                     Double c = Double.parseDouble(tokens[tokens.length - 2]);
-                    addOrderToOriginalReceipt(name, tokens[tokens.length - 2], tokens[tokens.length - 1]);
+
                     if(c > 1.00 && c<20){
-                        for(int n = 1; n < c;n++) {
-                            addOrderToOriginalReceipt(name + "(" + n + ")", tokens[tokens.length - 2], tokens[tokens.length - 1]);
+                        Double number = Double.parseDouble(tokens[tokens.length - 2]);
+                        Double numb = Double.parseDouble(tokens[tokens.length - 1]);
+                        numb/=c;
+                        number/=c;
+                        for(int n = 1; n <= c;n++) {
+                            total_price+=numb;
+                            DecimalFormat df = new DecimalFormat("#.##");
+                            total_price = Double.valueOf(df.format(total_price));
+                            addOrderToOriginalReceipt(name + "(" + n + ")", number.toString(), numb.toString());
                         }
+                    }else{
+                        addOrderToOriginalReceipt(name, tokens[tokens.length - 2], tokens[tokens.length - 1]);
+                        total_price+=Double.parseDouble(tokens[tokens.length - 1]);
+                        DecimalFormat df = new DecimalFormat("#.##");
+                        total_price = Double.valueOf(df.format(total_price));
                     }
 
                 }
@@ -345,6 +366,7 @@ public class Separatelly extends AppCompatActivity {
         }
         int last = originalReceipt.countOrders()- 1;
         Order ord=originalReceipt.getOrder(last);
+        total_price-=ord.getPrice();
         originalReceipt.removeOrder(ord);
 
         Log.d(TAG, Double.toString(total_price));
@@ -411,6 +433,90 @@ public class Separatelly extends AppCompatActivity {
                 count2++;
 
                 btnP2.setText("     Person 2               " + count2 + "                  " + price2 + " lv");
+                i++;
+                int sum = orders-1;
+                if(i <= sum){
+                    foodClicker(i);
+                }else{
+
+                    btnP1.setEnabled(false);
+                    btnP2.setEnabled(false);
+                    btnP3.setEnabled(false);
+                    btnP4.setEnabled(false);
+                    btnP5.setEnabled(false);
+
+                }
+            }
+        });
+
+        btnP3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Order rd = originalReceipt.getOrder(i);
+                Double num = rd.getPrice();
+                DecimalFormat df = new DecimalFormat("#.##");
+                num = Double.valueOf(df.format(num));
+                price3+=num;
+                price3 = Double.valueOf(df.format(price3));
+                count3++;
+
+                btnP3.setText("     Person 3               " + count3 + "                  " + price3 + " lv");
+                i++;
+                int sum = orders-1;
+                if(i <= sum){
+                    foodClicker(i);
+                }else{
+
+                    btnP1.setEnabled(false);
+                    btnP2.setEnabled(false);
+                    btnP3.setEnabled(false);
+                    btnP4.setEnabled(false);
+                    btnP5.setEnabled(false);
+
+                }
+            }
+        });
+
+        btnP4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Order rd = originalReceipt.getOrder(i);
+                Double num = rd.getPrice();
+                DecimalFormat df = new DecimalFormat("#.##");
+                num = Double.valueOf(df.format(num));
+                price4+=num;
+                price4 = Double.valueOf(df.format(price4));
+                count4++;
+
+                btnP4.setText("     Person 4               " + count4 + "                  " + price4 + " lv");
+                i++;
+                int sum = orders-1;
+                if(i <= sum){
+                    foodClicker(i);
+                }else{
+
+                    btnP1.setEnabled(false);
+                    btnP2.setEnabled(false);
+                    btnP3.setEnabled(false);
+                    btnP4.setEnabled(false);
+                    btnP5.setEnabled(false);
+
+                }
+            }
+        });
+
+        btnP5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Order rd = originalReceipt.getOrder(i);
+                Double num = rd.getPrice();
+                DecimalFormat df = new DecimalFormat("#.##");
+                num = Double.valueOf(df.format(num));
+                price5+=num;
+                price5 = Double.valueOf(df.format(price5));
+                count5++;
+
+                btnP5.setText("     Person 5               " + count5 + "                  " + price5 + " lv");
                 i++;
                 int sum = orders-1;
                 if(i <= sum){
