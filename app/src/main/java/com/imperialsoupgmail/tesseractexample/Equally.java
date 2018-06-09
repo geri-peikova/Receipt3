@@ -92,7 +92,7 @@ public class Equally extends AppCompatActivity {
             //  DecimalFormat df = new DecimalFormat("#.##");
             //  result = Double.valueOf(df.format(result));
 
-            txtTotal.setText("Total: " + total_price/2 + " lv");
+            txtTotal.setText("Total: " + total_price + " lv");
             // txtPerEach.setText("Per each: " + result + " lv");
 
             //  result = result*totalCustomers - total_price;
@@ -123,7 +123,6 @@ public class Equally extends AppCompatActivity {
                             txtTip.setVisibility(View.VISIBLE);
                             btnNewReceipt.setVisibility(View.VISIBLE);
                             btnTotalCustomers.setVisibility(View.INVISIBLE);
-                            total_price/=2;
                             double result = total_price/totalCustomers;
 
                             DecimalFormat df = new DecimalFormat("#.##");
@@ -223,7 +222,6 @@ public class Equally extends AppCompatActivity {
         text = OCRresult.split("\n+");
         Log.d(TAG, OCRresult);
         Log.d(TAG, "!!!!!!!");
-        Log.d(TAG, text[12]);
         for (String line : text) {
             String[] tokens = line.split("\\ +");
             int idx = tokens.length-1;
@@ -237,7 +235,7 @@ public class Equally extends AppCompatActivity {
                 }
                 for (int n = tok.length() - 1; n >= 0 ; n--) {
                     Character c = tok.charAt(n);
-                    if (!(Character.isDigit(c) || c.charValue() == 44 || c.equals("."))) {
+                    if (!(Character.isDigit(c) || c.charValue() == 44 || c.charValue() == 46)) {
                         notFound = true; // not number
                         break;
                     }
@@ -249,7 +247,7 @@ public class Equally extends AppCompatActivity {
                     tok = tokens[idx];
                     for (int n = tok.length() - 1; n >= 0 ; n--) {
                         Character c = tok.charAt(n);
-                        if (!(Character.isDigit(c) || c.charValue() == 44 || c.equals("."))) {
+                        if (!(Character.isDigit(c) || c.charValue() == 44 ||  c.charValue() == 46)) {
                             notFound = true; // not number
                             break;
                         }

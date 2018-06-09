@@ -300,7 +300,6 @@ public class Separatelly extends AppCompatActivity {
         text = OCRresult.split("\n+");
         Log.d(TAG, OCRresult);
         Log.d(TAG, "!!!!!!!");
-        Log.d(TAG, text[12]);
         for (String line : text) {
             String[] tokens = line.split("\\ +");
             int idx = tokens.length-1;
@@ -314,7 +313,7 @@ public class Separatelly extends AppCompatActivity {
                 }
                 for (int n = tok.length() - 1; n >= 0 ; n--) {
                     Character c = tok.charAt(n);
-                    if (!(Character.isDigit(c) || c.charValue() == 44 || c.equals("."))) {
+                    if (!(Character.isDigit(c) || c.charValue() == 44 ||  c.charValue() == 46)) {
                         notFound = true; // not number
                         break;
                     }
@@ -326,7 +325,7 @@ public class Separatelly extends AppCompatActivity {
                     tok = tokens[idx];
                     for (int n = tok.length() - 1; n >= 0 ; n--) {
                         Character c = tok.charAt(n);
-                        if (!(Character.isDigit(c) || c.charValue() == 44 || c.equals("."))) {
+                        if (!(Character.isDigit(c) || c.charValue() == 44 ||  c.charValue() == 46)) {
                             notFound = true; // not number
                             break;
                         }
@@ -376,8 +375,8 @@ public class Separatelly extends AppCompatActivity {
 
         }else {
             Order ord = originalReceipt.getOrder(last);
-            total_price -= ord.getPrice();
-            originalReceipt.removeOrder(ord);
+           // total_price -= ord.getPrice();
+          //  originalReceipt.removeOrder(ord);
 
             Log.d(TAG, Double.toString(total_price));
 
